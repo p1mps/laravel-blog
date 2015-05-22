@@ -11,6 +11,19 @@ composer update
 
 inside the directory to install all the packages.
 
+```
+php artisan migrate
+```
+
+to run all the migration for the MySQL database
+
+```
+php artisan db:seed
+```
+
+to seed the database with fake data (to login use admin admin)
+
+
 To run the application if you don't want to configure your webserver
 just do a
 
