@@ -25,7 +25,7 @@ and you will have the applcation running at
 
 Here there is also a possible configuration with Nginx plus php-fpm:
 
-
+```
 block="server {
     listen 80;
     server_name demo;
@@ -60,7 +60,7 @@ block="server {
         deny all;
     }
 }
-
+```
 I've used a Vagrant to run the application, just change the path to the root directory
 and you will get the application running.
 
