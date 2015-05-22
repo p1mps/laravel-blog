@@ -21,4 +21,5 @@ Route::get('/logout', 'HomeController@logout');
 
 Route::get('/dashboard', 'HomeController@dashboard');
 
+Route::resource('post', 'PostController');
 

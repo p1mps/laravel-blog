@@ -1,4 +1,4 @@
-@extends('app')
+@extends('base_dashboard')
 
 
 
