@@ -16,11 +16,11 @@
 							</ul>
 						</div>
 					@endif
+                    
+					<form class="form-horizontal" role="form" method="POST" action="{{ URL::route('postLogin') }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-						<div class="form-group">
+                		<div class="form-group">
 							<label class="col-md-4 control-label">Username</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" name="username" value="{{ old('username') }}">

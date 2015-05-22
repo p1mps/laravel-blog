@@ -15,7 +15,7 @@
                     </div>
                 @endforeach
                 
-
+                {!! $posts->render() !!} 
                 
 		    </div>
 	    </div>

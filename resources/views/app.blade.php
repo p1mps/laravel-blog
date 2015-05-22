@@ -10,7 +10,6 @@
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -30,14 +29,18 @@
 					<span class="icon-bar"></span>
 				</button>
 			</div>
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
-						<li><a href="{{ url('/login') }}">Login</a></li>
+                    @if (Auth::guest())
+						<li><a href="{{ url('/auth/login') }}">Login</a></li>
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url('/logout') }}">Logout</a></li>
+								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>
 						</li>
 					@endif

@@ -7,14 +7,14 @@ use App\Post;
 
 class PostController extends Controller {
 
-	/**
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        $posts = Post::all();
+        $posts = Post::paginate(10);
 		return view('posts.list', compact('posts'));
 	}
 
@@ -25,7 +25,7 @@ class PostController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('posts.form');
 	}
 
 	/**
@@ -33,9 +33,21 @@ class PostController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+        $input = $request->only('name','address','email','text');
+
+        $v = $this->validatePost($input); 
+        
+        if ($v->fails())
+        {
+            return redirect()->back()->with('errors', $v->errors());
+        }
+
+        Post::create($input);
+
+        return redirect()->back()->with('info',['post created']);
+        
 	}
 
 	/**
@@ -46,7 +58,8 @@ class PostController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $post = Post::find($id);
+		return view('posts.edit', compact('post'));
 	}
 
 	/**
@@ -57,7 +70,8 @@ class PostController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $post = Post::find($id);
+        return view('posts.form', compact('post'));
 	}
 
 	/**
@@ -66,20 +80,48 @@ class PostController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
-	}
+        $input = $request->only('name','address','email','text');
+        
+        $v = $this->validatePost($input);
+        
+        if ($v->fails())
+        {
+            return redirect()->back()->with('errors', $v->errors());
+        }
 
-	/**
+        $post = Post::find($id);
+        $post->name = $input['name'];
+        $post->email = $input['email'];
+        $post->address = $input['address'];
+        $post->text = $input['text'];
+        $post->save();
+        return redirect()->back()->with('info',['post updated']);
+    }
+
+    /**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Request $request)
 	{
-		//
-	}
+		$post = Post::find($request->get('id'));
+        $post->delete();
+        return redirect()->back()->with('info',['post deleted']);
+    }
 
+    private function validatePost($input)
+    {
+        $v = \Validator::make($input, [
+            'name' => 'required|max:20',
+            'email' => 'required|email',
+            'address' => 'required|max:20',
+            'text' => 'required|max:600'
+        ]);
+        
+        return $v;
+    }
 }

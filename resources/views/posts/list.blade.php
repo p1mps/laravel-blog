@@ -21,7 +21,9 @@
                 <td>{{$post->text}}</td>
                 <td>
                     <a href="{{URL::route('post.edit', [$post->id])}}" class="btn btn-default">Modifica</a>
-                {!!Form::model($post, ['route'=> 'post.destroy' ,$post->id, 'method' => 'DELETE'])!!}
+                {!!Form::model($post, ['route'=> 'post.destroy', 'method' => 'DELETE'])!!}
+                    <input type="hidden" name="id" value="{{ $post->id }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 {!!Form::submit('Delete',['class' => 'btn btn-danger'])!!}
                 {!!Form::close()!!}
                 </td>
@@ -30,4 +32,5 @@
         @endforeach
     </tbody>
 </table>
+{!! $posts->render() !!} 
 @endsection

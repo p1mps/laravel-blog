@@ -13,13 +13,16 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/login', 'HomeController@login');
+Route::get('/auth/login', ['as' => 'login', 'uses' => 'HomeController@login']);
 
-Route::post('/login', 'HomeController@postLogin');
+Route::post('/auth/login', ['as' => 'postLogin', 'uses' => 'HomeController@postLogin']);
 
-Route::get('/logout', 'HomeController@logout');
+Route::get('/auth/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
 
-Route::get('/dashboard', 'HomeController@dashboard');
+Route::group(['middleware' => 'auth'], function () {
 
-Route::resource('post', 'PostController');
+    Route::get('/dashboard', ['as' => 'dashboard', 'uses' =>  'HomeController@dashboard']);
 
+    Route::resource('/post', 'PostController');
+    
+});

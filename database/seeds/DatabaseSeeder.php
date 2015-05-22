@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder {
         ));
 
 
-        foreach(range(0,10) as $n)
+        foreach(range(0,30) as $n)
         {
             Post::create(array(
                 'email' => $faker->email,
