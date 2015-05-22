@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder {
                 'email' => $faker->email,
                 'address' => $faker->address,
                 'name' => $faker->word,
-                'text' => $faker->text(20000)
+                'text' => $faker->text(400)
             ));
         }
             
