@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Post;
+
 class HomeController extends Controller {
 
 	/*
@@ -14,23 +17,49 @@ class HomeController extends Controller {
 	*/
 
 	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-
-	/**
 	 * Show the application dashboard to the user.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return view('home');
+        $posts = Post::all();
+		return view('home', compact('posts'));
 	}
 
+    
+    public function login()
+    {
+        return view('login');
+    }
+
+    
+
+    
+    public function postLogin(Request $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+        
+        if (\Auth::attempt(['username' => $username, 'password' => $password]))
+        {
+            return redirect('/dashboard');
+        }
+        else
+            return redirect('/login')->with('errors',array('username or password not correct'));
+            
+    }
+
+
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
+
+    public function logout()
+    {
+        \Auth::logout();
+        return redirect('/');
+    }
+    
 }
