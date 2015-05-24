@@ -2,6 +2,7 @@
 
 
 @section('content_dashboard')
+    <div class="col-md-12">
 <table class="table table-striped table-bordered" >
     <thead>
         <tr>
@@ -15,11 +16,11 @@
     <tbody>
         @foreach ($posts as $post)
             <tr>
-                <td>{{$post->name}}</td>
-                <td>{{$post->email}}</td>
-                <td>{{$post->address}}</td>
-                <td>{{$post->text}}</td>
-                <td class="col-md-4">
+                <td "col-md-1">{{$post->name}}</td>
+                <td class="col-md-1">{{$post->email}}</td>
+                <td class="col-md-3">{{$post->address}}</td>
+                <td class="col-md-3">{{$post->text}}</td>
+                <td class="col-md-2">
                     
                     <a href="{{URL::route('post.edit', [$post->id])}}" class="btn btn-default">Edit</a>
                     <div class="dashboard-buttons">
@@ -35,5 +36,6 @@
         @endforeach
     </tbody>
 </table>
+    </div>
 {!! $posts->render() !!} 
 @endsection
