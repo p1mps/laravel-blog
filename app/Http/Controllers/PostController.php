@@ -41,7 +41,7 @@ class PostController extends Controller {
         
         if ($v->fails())
         {
-            return redirect()->back()->with('errors', $v->errors());
+            return redirect()->back()->with('errors', $v->errors()->all());
         }
 
         Post::create($input);
@@ -88,7 +88,7 @@ class PostController extends Controller {
         
         if ($v->fails())
         {
-            return redirect()->back()->with('errors', $v->errors());
+            return redirect()->back()->with('errors', $v->errors()->all());
         }
 
         $post = Post::find($id);
