@@ -24,9 +24,9 @@
                     <a href="{{URL::route('post.edit', [$post->id])}}" class="btn btn-default">Edit</a>
                     <div class="dashboard-buttons">
                 {!!Form::model($post, ['route'=> 'post.destroy', 'method' => 'DELETE'])!!}
-                        <input type="hidden" name="id" value="{{ $post->id }}">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 {!!Form::submit('Delete',['class' => 'btn btn-danger'])!!}
+                        <input type="hidden" name="id" value="{{ $post->id }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 {!!Form::close()!!}
                     </div>
                 </td>

@@ -6294,7 +6294,6 @@ label,
   margin-bottom: 50px;
 }
 .dashboard-buttons {
-  float: left;
-  margin-left: 50px;
-  margin-right: 50px;
+  float: right;
+  margin-right: 50%;
 }
