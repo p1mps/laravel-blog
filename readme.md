@@ -3,7 +3,7 @@
 
 ## Running the application
 
-Before all do a
+First of all do a
 
 ```
 composer update
@@ -15,7 +15,8 @@ inside the directory to install all the packages.
 php artisan migrate
 ```
 
-to run all the migration for the MySQL database
+to run all the migration for the MySQL database (config/database.php contains the 
+database credentials)
 
 ```
 php artisan db:seed
@@ -24,7 +25,7 @@ php artisan db:seed
 to seed the database with fake data (to login use admin admin)
 
 
-To run the application if you don't want to configure your webserver
+To run the application, if you don't want to configure your webserver
 just do a
 
 ```
@@ -36,7 +37,7 @@ and you will have the applcation running at
 [https://localhost:8000](https://localhost:8000)
 
 
-Here there is also a possible configuration with Nginx plus php-fpm:
+Below there is also a possible configuration with Nginx plus php-fpm:
 
 ```
 block="server {
@@ -74,6 +75,6 @@ block="server {
     }
 }
 ```
-I've used a Vagrant to run the application, just change the path to the root directory
-and you will get the application running.
+change the path to the root directory
+and you will get the application running (I've used a Vagrant machine to run the application).
 
