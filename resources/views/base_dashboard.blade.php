@@ -29,8 +29,10 @@
 <div class="container">
     <div class="row">
 		<div class="col-md-10 col-md-offset-1">
+            <div class="dashboard-actions">
             <a class="btn btn-default" href="{{URL::route('post.create')}}"> Insert new Article</a>
             <a class="btn btn-default" href="{{URL::route('post.index')}}"> List Articles</a>
+            </div>
                 @yield('content_dashboard')
 		</div>
 	</div>
